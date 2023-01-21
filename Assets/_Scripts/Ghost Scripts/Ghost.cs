@@ -70,7 +70,9 @@ public class Ghost : MonoBehaviour
         if (directed)
         {
             if(collider.gameObject.tag=="Grave")
-            {   
+            {
+                PlayerController playerScript = player.GetComponent<PlayerController>();
+                playerScript.ghostActive = false;
                 transform.gameObject.SetActive(false);
             }
         }

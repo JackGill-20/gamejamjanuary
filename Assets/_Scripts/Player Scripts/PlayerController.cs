@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
        distToGround = gameObject.GetComponent<Collider>().bounds.extents.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var moveInput = move.action.ReadValue<Vector2>();
@@ -70,6 +69,20 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    void OnCollisionEnter(Collision collider)
+    {
+        if(collider.gameObject.tag == "Grave")
+        {
+            Grave graveScript = collider.gameObject.GetComponent<Grave>();
+            if (graveScript.active && interact.action.ReadValue<float>() > 0)
+            {
+                graveScript.active = false;
+                ghost.SetActive(true);
+            }
+        }
+    }
+
     bool IsGrounded() 
     {
         return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);

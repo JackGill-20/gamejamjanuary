@@ -27,13 +27,14 @@ public class Grave : MonoBehaviour
     {
         
     }
+
     void OnCollisionEnter(Collision collider)
     {
         if (collider.gameObject.tag == "Ghost")
         {
-            if (collider.gameObject.GetComponent<Ghost>().directed)
+            if (collider.gameObject.GetComponent<Ghost>().directed && !active)
             {
-
+                active = true;
             }
         }
     }
