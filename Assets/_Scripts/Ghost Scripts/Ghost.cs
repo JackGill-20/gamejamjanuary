@@ -22,7 +22,9 @@ public class Ghost : MonoBehaviour
 
     public float moveSpeed = 5f;
     public Vector2 moveDirection = default;
+
     public bool directed = false;
+    public Vector2 facingDirection = default;
 
     public float followRadius = 2;
 
@@ -41,10 +43,10 @@ public class Ghost : MonoBehaviour
             if(transform.position.x > player.transform.position.x + followRadius || transform.position.x < player.transform.position.x - followRadius ||
                 transform.position.z > player.transform.position.z + followRadius || transform.position.z < player.transform.position.z - followRadius)
             {
-                Vector3 direction = player.transform.position - transform.position;
-                direction = direction.normalized;
-                moveDirection.x = direction.x;
-                moveDirection.y = direction.z;
+                Vector3 travelDirection = player.transform.position - transform.position;
+                travelDirection = travelDirection.normalized;
+                moveDirection.x = travelDirection.x;
+                moveDirection.y = travelDirection.z;
             }
             else
             {
@@ -57,9 +59,14 @@ public class Ghost : MonoBehaviour
         {
             //Continue moving forward
 
-            //Check for button collision
+            rb.velocity = new Vector3(facingDirection.x * moveSpeed * 2, rb.velocity.y, facingDirection.y * moveSpeed * 2);
 
         }
+
+    }
+
+    void OnCollisionEnter(Collision collider)
+    {
 
     }
 }
