@@ -67,6 +67,14 @@ public class Ghost : MonoBehaviour
 
     void OnCollisionEnter(Collision collider)
     {
-
+        if (directed)
+        {
+            if(collider.gameObject.GetComponent<Grave>() != null)
+            {
+                Grave graveScript = collider.gameObject.GetComponent<Grave>();
+                graveScript.active = true;
+                transform.gameObject.SetActive(false);
+            }
+        }
     }
 }

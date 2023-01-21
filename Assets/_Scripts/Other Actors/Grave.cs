@@ -13,6 +13,11 @@ public class Grave : MonoBehaviour
     //  Inactive:
     //    Becomes active once ghost collides with it, ghost is despawned
 
+    public bool active = false;
+    public float abilityType = 0;
+
+    public GameObject ghost = default;
+
     void Start()
     {
         
