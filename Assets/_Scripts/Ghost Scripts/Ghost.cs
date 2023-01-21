@@ -69,10 +69,8 @@ public class Ghost : MonoBehaviour
     {
         if (directed)
         {
-            if(collider.gameObject.GetComponent<Grave>() != null)
-            {
-                Grave graveScript = collider.gameObject.GetComponent<Grave>();
-                graveScript.active = true;
+            if(collider.gameObject.tag=="Grave")
+            {   
                 transform.gameObject.SetActive(false);
             }
         }
