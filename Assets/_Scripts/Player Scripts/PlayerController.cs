@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private InputActionReference move,jump,interact;
     private Rigidbody rb;
     float distToGround;
+    private Vector2 lastMoved;
     // Start is called before the first frame update
 
     void Start()
@@ -30,6 +31,25 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded()&&jump.action.ReadValue<float>()>0)
         {
             rb.velocity = new Vector3(rb.velocity.x,jumpHeight,rb.velocity.z);
+        }
+        if (!moveInput.Equals(Vector2.zero))
+        {
+            if(moveInput.y > 0) 
+            {
+                lastMoved = new Vector2(0, 1);
+            }
+            else if (moveInput.y < 0)
+            {
+                lastMoved = new Vector2(0, -1);
+            }
+            else if (moveInput.x > 0)
+            {
+                lastMoved = new Vector2(1,0);
+            }
+            else if (moveInput.x < 0)
+            {
+                lastMoved = new Vector2(-1, 0);
+            }
         }
     }
     bool IsGrounded() 
