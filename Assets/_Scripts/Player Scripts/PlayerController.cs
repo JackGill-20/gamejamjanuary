@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     private InputActionReference move,jump,interact;
     private Rigidbody rb;
     float distToGround;
-    private Vector2 lastMoved;
-    // Start is called before the first frame update
+    private Vector2 lastMoved = Vector2.right;
+
+    public bool ghostActive = false;    //true when ghost is following, false when ghost is in grave
+    public GameObject ghost = default;
 
     void Start()
     {
@@ -49,6 +51,22 @@ public class PlayerController : MonoBehaviour
             else if (moveInput.x < 0)
             {
                 lastMoved = new Vector2(-1, 0);
+            }
+        }
+        if(interact.action.ReadValue<float>() > 0)
+        {
+            if (ghostActive)
+            {
+                Ghost ghostScript = ghost.GetComponent<Ghost>();
+
+                if (!ghostScript.directed)
+                {
+                    Vector3 ghostPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    ghost.transform.position = ghostPosition;
+
+                    ghostScript.facingDirection = lastMoved;
+                    ghostScript.directed = true;
+                }
             }
         }
     }
