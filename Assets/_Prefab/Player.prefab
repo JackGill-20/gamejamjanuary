@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 741910766991765836}
   - component: {fileID: 741910766991765843}
   - component: {fileID: 741910766991765833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,15 @@ MonoBehaviour:
   move: {fileID: 5174848917030088213, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
   jump: {fileID: -7438778454369650382, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
   interact: {fileID: -6459805771945039788, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
+  ghostActive: 0
+  ghostAlmost: 0
+  counter: 0
+  waitTime: 60
+  ghost: {fileID: 0}
+  doubleJump: 0
+  jumpsLeft: 1
+  jumpWait: 250
+  jumpTimer: 0
 --- !u!114 &741910766991765833
 MonoBehaviour:
   m_ObjectHideFlags: 0
