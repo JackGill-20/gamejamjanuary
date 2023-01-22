@@ -51,10 +51,12 @@ public class Ghost : MonoBehaviour
                 travelDirection = travelDirection.normalized;
                 moveDirection.x = travelDirection.x;
                 moveDirection.y = travelDirection.z;
+                
             }
             else
             {
                 moveDirection = Vector2.zero;
+                
             }
 
             rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.y * moveSpeed);
