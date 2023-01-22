@@ -21,6 +21,9 @@ public class Grave : MonoBehaviour
     public GameObject player = default;
     public GameObject ghost = default;
     private GameObject[] grates;
+    private SpriteRenderer spriteRenderer;
+    public Sprite activeSprite;
+    public Sprite inactiveSprite;
 
     private PlayerController playerScript = default;
 
@@ -29,7 +32,8 @@ public class Grave : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
        
         grates=GameObject.FindGameObjectsWithTag("Grate");
-        
+
+        spriteRenderer= gameObject.GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -42,6 +46,7 @@ public class Grave : MonoBehaviour
             if(playerScript.interact.action.ReadValue<float>() > 0)
             {
                 active = false;
+                spriteRenderer.sprite = inactiveSprite;
                 playerScript.ghostAlmost = true;
                 playerScript.doubleJump = false;
                 ghost.SetActive(true);
@@ -62,6 +67,7 @@ public class Grave : MonoBehaviour
             if (collider.gameObject.GetComponent<Ghost>().directed && !active)
             {
                 active = true;
+                spriteRenderer.sprite = activeSprite;
                 collider.gameObject.GetComponent<Ghost>().directed = false;
                 if(abilityType == 0)
                 {
