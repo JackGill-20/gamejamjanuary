@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpHeight: 2
+  jumpHeight: 4
   move: {fileID: 5174848917030088213, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
   jump: {fileID: -7438778454369650382, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
   interact: {fileID: -6459805771945039788, guid: 02a5f676ce3f1814587b25a38f55ddf4, type: 3}
