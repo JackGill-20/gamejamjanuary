@@ -75,10 +75,14 @@ public class Ghost : MonoBehaviour
                 playerScript.ghostActive = false;
                 transform.gameObject.SetActive(false);
             }
-            if (collider.gameObject.tag == "Pushblock")
+            else if (collider.gameObject.tag == "Pushblock")
             {
                 StartCoroutine(pushCoroutine(collider));
                
+            }
+            else
+            {
+                directed = false;
             }
         }
     }
