@@ -10,12 +10,15 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpHeight;
     [SerializeField]
-    private InputActionReference move,jump,interact;
+    public InputActionReference move,jump,interact;
     private Rigidbody rb;
     float distToGround;
     private Vector2 lastMoved = Vector2.right;
 
     public bool ghostActive = false;    //true when ghost is following, false when ghost is in grave
+    public bool ghostAlmost = false;
+    public float counter = 0;
+    public float waitTime = 60;
     public GameObject ghost = default;
 
     void Start()
@@ -54,7 +57,20 @@ public class PlayerController : MonoBehaviour
         }
         if(interact.action.ReadValue<float>() > 0)
         {
-            if (ghostActive)
+            if (ghostAlmost)
+            {
+                if (counter >= waitTime)
+                {
+                    ghostAlmost = false;
+                    ghostActive = true;
+                    counter = 0;
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+            else if (ghostActive)
             {
                 Ghost ghostScript = ghost.GetComponent<Ghost>();
 

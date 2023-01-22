@@ -427,6 +427,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 379982994}
     - target: {fileID: 741910766991765843, guid: 5e8df7a5a1bea6b43ace38787f786505, type: 3}
+      propertyPath: waitTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 741910766991765843, guid: 5e8df7a5a1bea6b43ace38787f786505, type: 3}
       propertyPath: ghostActive
       value: 1
       objectReference: {fileID: 0}
@@ -727,7 +731,7 @@ GameObject:
   - component: {fileID: 2091663195}
   - component: {fileID: 2091663194}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: Grave
   m_TagString: Grave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -747,7 +751,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   abilityType: 0
+  radius: 3
+  player: {fileID: 1822415045}
   ghost: {fileID: 379982994}
+  yep: 0
 --- !u!65 &2091663195
 BoxCollider:
   m_ObjectHideFlags: 0
