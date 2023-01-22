@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Pushblock
   - GraveReclaim
+  - Grate
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Ghost
   - Player
   - Interactable
-  - 
+  - Grate
   - 
   - 
   - 

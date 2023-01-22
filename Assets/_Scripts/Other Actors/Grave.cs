@@ -14,18 +14,22 @@ public class Grave : MonoBehaviour
     //    Becomes active once ghost collides with it, ghost is despawned
 
     public bool active = false;
-    public float abilityType = 0;
+    public int abilityType = 0;
 
     public float radius = 3f;
 
     public GameObject player = default;
     public GameObject ghost = default;
+    private GameObject[] grates;
 
     private PlayerController playerScript = default;
 
     void Start()
     {
         playerScript = player.GetComponent<PlayerController>();
+       
+        grates=GameObject.FindGameObjectsWithTag("Grate");
+        
     }
 
     void FixedUpdate()
@@ -42,6 +46,10 @@ public class Grave : MonoBehaviour
                 playerScript.doubleJump = false;
                 ghost.SetActive(true);
                 ghost.transform.position = player.transform.position;
+                foreach (GameObject g in grates)
+                {
+                    g.GetComponent<Collider>().enabled = true;
+                }
             }
         }
 
@@ -58,6 +66,14 @@ public class Grave : MonoBehaviour
                 if(abilityType == 0)
                 {
                     playerScript.doubleJump = true;
+                }
+                if (abilityType == 1)
+                {
+                    foreach(GameObject g in grates)
+                    {
+                        g.GetComponent<Collider>().enabled = false;
+
+                    }
                 }
             }
         }
