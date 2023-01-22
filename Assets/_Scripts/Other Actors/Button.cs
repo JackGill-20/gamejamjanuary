@@ -9,7 +9,8 @@ public class Button : MonoBehaviour
     public GameObject spawned;
     private SpriteRenderer spriteRenderer;
     public Sprite activeSprite;
-   
+
+    public AudioSource SFX_Pressed = default;
 
     //Features
     //  Activates when ghost collides with it
@@ -27,14 +28,14 @@ public class Button : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-       
-            if(!pressed) 
-            {
-                spriteRenderer.sprite = activeSprite;
-                pressed= true;
-                Instantiate(spawned,spawncoords,Quaternion.identity);
 
-            }
+        if (!pressed)
+        {
+            SFX_Pressed.Play();
+            spriteRenderer.sprite = activeSprite;
+            pressed = true;
+            Instantiate(spawned, spawncoords, Quaternion.identity);
+        }
         
     }
 
