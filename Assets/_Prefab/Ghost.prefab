@@ -131,6 +131,6 @@ MonoBehaviour:
   player: {fileID: 0}
   moveSpeed: 7
   moveDirection: {x: 0, y: 0}
-  directed: 1
+  directed: 0
   facingDirection: {x: 1, y: 0}
   followRadius: 2
