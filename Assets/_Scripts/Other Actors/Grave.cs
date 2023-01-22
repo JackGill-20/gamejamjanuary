@@ -27,6 +27,9 @@ public class Grave : MonoBehaviour
 
     private PlayerController playerScript = default;
 
+    public AudioSource SFX_In = default;
+    public AudioSource SFX_Out = default;
+
     void Start()
     {
         playerScript = player.GetComponent<PlayerController>();
@@ -45,6 +48,7 @@ public class Grave : MonoBehaviour
 
             if(playerScript.interact.action.ReadValue<float>() > 0)
             {
+                SFX_Out.Play();
                 active = false;
                 spriteRenderer.sprite = inactiveSprite;
                 playerScript.ghostAlmost = true;
@@ -66,6 +70,7 @@ public class Grave : MonoBehaviour
         {
             if (collider.gameObject.GetComponent<Ghost>().directed && !active)
             {
+                SFX_In.Play();
                 active = true;
                 spriteRenderer.sprite = activeSprite;
                 collider.gameObject.GetComponent<Ghost>().directed = false;
