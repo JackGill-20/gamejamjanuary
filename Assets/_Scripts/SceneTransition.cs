@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scenetransition : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
     public string NextSceneName;
     // Start is called before the first frame update
