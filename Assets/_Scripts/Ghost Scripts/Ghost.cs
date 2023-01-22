@@ -51,12 +51,12 @@ public class Ghost : MonoBehaviour
                 travelDirection = travelDirection.normalized;
                 moveDirection.x = travelDirection.x;
                 moveDirection.y = travelDirection.z;
-                gameObject.GetComponent<Collider>().enabled= false;
+                
             }
             else
             {
                 moveDirection = Vector2.zero;
-                gameObject.GetComponent<Collider>().enabled = true;
+                
             }
 
             rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.y * moveSpeed);
