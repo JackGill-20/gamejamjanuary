@@ -75,28 +75,29 @@ public class PlayerController : MonoBehaviour
                 lastMoved = new Vector2(-1, 0);
             }
         }
-        if(interact.action.ReadValue<float>() > 0)
+        if (ghostAlmost)
         {
-            if (ghostAlmost)
+            if (counter >= waitTime)
             {
-                if (counter >= waitTime)
-                {
-                    ghostAlmost = false;
-                    ghostActive = true;
-                    counter = 0;
-                }
-                else
-                {
-                    counter++;
-                }
+                ghostAlmost = false;
+                ghostActive = true;
+                counter = 0;
             }
-            else if (ghostActive)
+            else
+            {
+                counter++;
+            }
+        }
+        if (interact.action.ReadValue<float>() > 0)
+        {
+           
+            if (ghostActive)
             {
                 Ghost ghostScript = ghost.GetComponent<Ghost>();
 
                 if (!ghostScript.directed)
                 {
-                    Vector3 ghostPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    Vector3 ghostPosition = new Vector3(transform.position.x, transform.position.y + .1f, transform.position.z);
                     ghost.transform.position = ghostPosition;
 
                     ghostScript.facingDirection = lastMoved;
