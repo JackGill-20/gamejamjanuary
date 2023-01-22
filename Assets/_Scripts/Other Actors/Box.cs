@@ -5,7 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     Rigidbody rb;
-    bool beingPushed;
+
     //Features
     //  Moves when colliding with player or ghost
     //  Stopped by walls
@@ -25,15 +25,12 @@ public class Box : MonoBehaviour
         if (collider.gameObject.tag == "Ghost"&&collider.gameObject.GetComponent<Ghost>().directed)
         {
             rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-            beingPushed = true;
+            rb.mass = 1f;
         }
         else
         {
             rb.constraints=RigidbodyConstraints.FreezePosition|RigidbodyConstraints.FreezeRotation;
-            if(beingPushed)
-            {
-
-            }
+            rb.mass=1000f;
         }
     }
     }
