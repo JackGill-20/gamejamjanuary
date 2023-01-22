@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     public float waitTime = 60;
     public GameObject ghost = default;
 
+    public bool doubleJump = false;
+    public float jumpsLeft = 1;
+    public float jumpWait = 250;
+    public float jumpTimer = 0;
+
     void Start()
     {
        rb=gameObject.GetComponent<Rigidbody>();
@@ -32,9 +37,24 @@ public class PlayerController : MonoBehaviour
         var moveInput = move.action.ReadValue<Vector2>();
         rb.velocity = new Vector3(moveInput.x*moveSpeed,rb.velocity.y,moveInput.y*moveSpeed);
 
-        if (IsGrounded()&&jump.action.ReadValue<float>()>0)
+        if (IsGrounded() && jump.action.ReadValue<float>() > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x,jumpHeight,rb.velocity.z);
+            jumpTimer = 0;
+        }
+        else if(doubleJump && jumpTimer >= jumpWait && jumpsLeft > 0 && jump.action.ReadValue<float>() > 0)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z);
+            jumpsLeft--;
+            jumpTimer = 0;
+        }
+        if (!IsGrounded() && doubleJump && jumpTimer < jumpWait)
+        {
+            jumpTimer++;
+        }
+        if (IsGrounded() && doubleJump)
+        {
+            jumpsLeft = 1;
         }
         if (!moveInput.Equals(Vector2.zero))
         {
@@ -84,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        
     }
 
     void OnCollisionEnter(Collision collider)

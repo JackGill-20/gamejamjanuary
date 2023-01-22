@@ -21,8 +21,6 @@ public class Grave : MonoBehaviour
     public GameObject player = default;
     public GameObject ghost = default;
 
-    public bool yep = false;
-
     private PlayerController playerScript = default;
 
     void Start()
@@ -36,13 +34,12 @@ public class Grave : MonoBehaviour
         if(active && player.transform.position.x > transform.position.x - radius && player.transform.position.x < transform.position.x + radius &&
             player.transform.position.z > transform.position.z - radius && player.transform.position.z < transform.position.z + radius)
         {
-            yep = true;
 
             if(playerScript.interact.action.ReadValue<float>() > 0)
             {
-                yep = false;
                 active = false;
                 playerScript.ghostAlmost = true;
+                playerScript.doubleJump = false;
                 ghost.SetActive(true);
                 ghost.transform.position = player.transform.position;
             }
@@ -58,6 +55,10 @@ public class Grave : MonoBehaviour
             {
                 active = true;
                 collider.gameObject.GetComponent<Ghost>().directed = false;
+                if(abilityType == 0)
+                {
+                    playerScript.doubleJump = true;
+                }
             }
         }
     }
