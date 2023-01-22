@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public float jumpTimer = 0;
     public Animator animator;
 
+    public AudioSource SFX_Jump = default;
+    public AudioSource SFX_Step = default;
+    public AudioSource SFX_Launch = default;
+
     void Start()
     {
        rb=gameObject.GetComponent<Rigidbody>();
@@ -43,12 +47,13 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() && jump.action.ReadValue<float>() > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x,jumpHeight,rb.velocity.z);
-
+            SFX_Jump.Play();
             jumpTimer = 0;
         }
         else if(doubleJump && jumpTimer >= jumpWait && jumpsLeft > 0 && jump.action.ReadValue<float>() > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z);
+            SFX_Jump.Play();
             jumpsLeft--;
             jumpTimer = 0;
         }
@@ -108,7 +113,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector3 ghostPosition = new Vector3(transform.position.x, transform.position.y + .1f, transform.position.z);
                     ghost.transform.position = ghostPosition;
-
+                    SFX_Launch.Play();
                     ghostScript.facingDirection = lastMoved;
                     ghostScript.directed = true;
                 }

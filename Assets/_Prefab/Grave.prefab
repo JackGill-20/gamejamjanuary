@@ -66,8 +66,10 @@ MonoBehaviour:
   radius: 3
   player: {fileID: 0}
   ghost: {fileID: 0}
-  activeSprite: {fileID: 0}
-  inactiveSprite: {fileID: 0}
+  activeSprite: {fileID: 1675696101, guid: 2019180ebcd89054b9127e0370d922fa, type: 3}
+  inactiveSprite: {fileID: -317001155, guid: 2019180ebcd89054b9127e0370d922fa, type: 3}
+  SFX_In: {fileID: 315415344281623487}
+  SFX_Out: {fileID: 4938454290214428154}
 --- !u!212 &116773007982529382
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c29494ff4f65b1c41ad8faf1f3edf7b1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5cf49117a5e2b7d4e9c702ee3bc338fe, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -227,7 +229,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c29494ff4f65b1c41ad8faf1f3edf7b1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1163d3b90d3a98d4e89a2f23b3116879, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
