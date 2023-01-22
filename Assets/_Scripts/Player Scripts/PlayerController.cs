@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float jumpsLeft = 1;
     public float jumpWait = 250;
     public float jumpTimer = 0;
+    public Animator animator;
 
     void Start()
     {
@@ -36,10 +37,13 @@ public class PlayerController : MonoBehaviour
     {
         var moveInput = move.action.ReadValue<Vector2>();
         rb.velocity = new Vector3(moveInput.x*moveSpeed,rb.velocity.y,moveInput.y*moveSpeed);
+        if(IsGrounded()) { animator.SetBool(1, false); }
+        else { animator.SetBool(1, true); }
 
         if (IsGrounded() && jump.action.ReadValue<float>() > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x,jumpHeight,rb.velocity.z);
+
             jumpTimer = 0;
         }
         else if(doubleJump && jumpTimer >= jumpWait && jumpsLeft > 0 && jump.action.ReadValue<float>() > 0)
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
         }
         if (!moveInput.Equals(Vector2.zero))
         {
+            animator.SetBool(0, true);
             if(moveInput.y > 0) 
             {
                 lastMoved = new Vector2(0, 1);
@@ -74,6 +79,10 @@ public class PlayerController : MonoBehaviour
             {
                 lastMoved = new Vector2(-1, 0);
             }
+        }
+        else
+        {
+            animator.SetBool(0, false);
         }
         if (ghostAlmost)
         {

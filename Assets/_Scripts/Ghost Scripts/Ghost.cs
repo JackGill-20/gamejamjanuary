@@ -27,11 +27,15 @@ public class Ghost : MonoBehaviour
     public Vector2 facingDirection = default;
 
     public float followRadius = 2;
+    public Animator animator;
+    [Range(1,3)]
+    public int ghostPowerNum;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         moveDirection = new Vector2(0, 0);
+        animator.SetInteger("GhostNum",ghostPowerNum);
     }
 
     void FixedUpdate()
