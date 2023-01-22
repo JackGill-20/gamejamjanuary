@@ -8,6 +8,9 @@ TagManager:
   - Button
   - Block
   - Ghost
+  - Wall
+  - Pushblock
+  - GraveReclaim
   layers:
   - Default
   - TransparentFX

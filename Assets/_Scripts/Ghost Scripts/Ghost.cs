@@ -75,6 +75,19 @@ public class Ghost : MonoBehaviour
                 playerScript.ghostActive = false;
                 transform.gameObject.SetActive(false);
             }
+            if (collider.gameObject.tag == "Pushblock")
+            {
+                StartCoroutine(pushCoroutine(collider));
+               
+            }
+        }
+    }
+    private IEnumerator pushCoroutine(Collision collider)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (collider.gameObject.GetComponent<Rigidbody>().constraints == (RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation)) ;
+        {
+            directed = false;
         }
     }
 }
