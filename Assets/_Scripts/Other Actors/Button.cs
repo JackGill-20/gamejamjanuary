@@ -17,7 +17,7 @@ public class Button : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+       
 
     }
 
